@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2017 Amit Kumar.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed
+ * under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+def resolveSourceDirs(String flavor, String buildType, String buildVariant) {
+    def sourceDirs = [
+            "${projectDir}/src/main/java",
+    ]
+
+    if (!buildType.isEmpty()) {
+        sourceDirs += "${projectDir}/src/${buildType}/java"
+        if (!flavor.isEmpty()) {
+            sourceDirs += "${projectDir}/src/${flavor}/java"
+        }
+    }
+
+    def buildVariantDir = "${projectDir}/src/${buildVariant}/java"
+    if (!sourceDirs.contains(buildVariantDir)) {
+        sourceDirs += buildVariantDir
+    }
+
+    return sourceDirs
+}
+
+def resolveClassesDir(String flavor, String buildType, String buildVariant) {
+    if (!buildType.isEmpty() && !flavor.isEmpty()) {
+        return "${buildDir}/intermediates/classes/${flavor}/${buildType}"
+    } else if (!buildType.isEmpty()) {
+        return "${buildDir}/intermediates/classes/${buildType}"
+    } else {
+        return "${buildDir}/classes/${buildVariant}"
+    }
+}
+
+def removeCheckTaskIf(taskName, taskType) {
+    def checkDependencyTaskName = "${taskName}Test"
+    def checkDependencyTask = tasks.findByName(checkDependencyTaskName)
+
+    // remove all instances of the task
+    tasks.removeIf { task ->
+        task.name.contains(taskName)
+    }
+
+    // redefine deprecated check dependency task (for VerificationTasks)
+    if (checkDependencyTask != null) {
+        // deprecate this check task (unfortunately we are unable to remove it)
+        task(checkDependencyTaskName, type: taskType, overwrite: true) {
+            group = null
+            description = "Deprecated. This does nothing"
+        }
+    }
+}
+
+ext {
+    resolveSourceDirs = this.&resolveSourceDirs
+    resolveClassesDir = this.&resolveClassesDir
+    removeCheckTaskIf = this.&removeCheckTaskIf
+}
