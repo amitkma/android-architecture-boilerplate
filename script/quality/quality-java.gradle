@@ -18,6 +18,5 @@ apply from: "$rootDir/script/quality/quality.gradle"
 
 generateCheckstyleTask("", "", "main")
 generatePMDTask("", "", "main")
-generateFindbugsTask("", "", "main")
 generateCheckQualityTask("main", false)
 

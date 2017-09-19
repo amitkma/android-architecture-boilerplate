@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Amit Kumar.
+ * Copyright 2017 Amit Kumar.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,31 @@
  * limitations under the License.
  */
 
-dependencies {
+package com.github.amitkma.boilerplate.domain.interactor;
 
-    def cacheDependencies = rootProject.ext.cacheDependencies
-    def cacheTestDependencies = rootProject.ext.cacheTestDependencies
+import io.reactivex.observers.DisposableObserver;
 
-    implementation project(':data')
+/**
+ * Author: Amit Kumar
+ * Created on: 19/9/17.
+ *
+ * Default {@link DisposableObserver} base class to be used whenever you want default error
+ * handling.
+ */
 
-    implementation cacheDependencies.rxJava
-    implementation cacheDependencies.gson
+public class DefaultObserver<T> extends DisposableObserver<T> {
+    @Override
+    public void onNext(T t) {
 
-    testImplementation cacheTestDependencies.junit
-    testImplementation cacheTestDependencies.mockito
-    testImplementation cacheTestDependencies.assertj
-    testImplementation cacheTestDependencies.robolectric
+    }
 
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public void onComplete() {
+
+    }
 }

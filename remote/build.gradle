@@ -14,6 +14,31 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/script/config/java/library.gradle"
-apply from: "$rootDir/script/config/dependencies/remote-dependencies.gradle"
+apply from: "$rootDir/script/config/java-library.gradle"
+
+dependencies {
+    def remoteDependencies = rootProject.ext.remoteDependencies
+    def remoteTestDependencies = rootProject.ext.remoteTestDependencies
+
+
+    implementation project(':data')
+
+    compileOnly remoteDependencies.javaxAnnotation
+
+    implementation remoteDependencies.javaxInject
+    implementation remoteDependencies.rxJava
+    implementation remoteDependencies.gson
+    implementation remoteDependencies.guava
+    implementation remoteDependencies.okHttp
+    implementation remoteDependencies.okHttpLogger
+    implementation remoteDependencies.retrofit
+    implementation remoteDependencies.retrofitConverter
+    implementation remoteDependencies.retrofitAdapter
+
+    testImplementation remoteTestDependencies.junit
+    testImplementation remoteTestDependencies.mockito
+    testImplementation remoteTestDependencies.assertj
+
+
+}
 

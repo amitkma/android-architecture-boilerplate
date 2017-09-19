@@ -32,6 +32,8 @@ ext {
     butterKnifeVersion = '8.8.1'
     rxJavaVersion = '2.1.3'
     rxAndroidVersion = '2.0.1'
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
     gsonVersion = '2.8.1'
     okHttpVersion = '3.9.0'
     retrofitVersion = '2.3.0'
@@ -39,6 +41,7 @@ ext {
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
     daggerVersion = '2.11'
+    guavaVersion = '23.0-android'
 
     //Testing
     robolectricVersion = '3.4.2'
@@ -55,7 +58,10 @@ ext {
     runnerVersion = '0.5'
 
     domainDependencies = [
-            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            guava          : "com.google.guava:guava:${guavaVersion}"
     ]
 
     domainTestDependencies = [
@@ -72,10 +78,13 @@ ext {
             gson              : "com.google.code.gson:gson:${gsonVersion}",
             rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
             retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            guava             : "com.google.guava:guava:${guavaVersion}"
     ]
 
     presentationTestDependencies = [
@@ -93,10 +102,13 @@ ext {
             gson              : "com.google.code.gson:gson:${gsonVersion}",
             rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
             retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            guava             : "com.google.guava:guava:${guavaVersion}"
     ]
 
     dataTestDependencies = [
@@ -106,18 +118,21 @@ ext {
             robolectric: "org.robolectric:robolectric:${robolectricVersion}"
     ]
 
-    cacheDependencies = [
+    localPersistanceDependencies = [
             daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger            : "com.google.dagger:dagger:${daggerVersion}",
             gson              : "com.google.code.gson:gson:${gsonVersion}",
             rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
             roomRuntime       : "android.arch.persistence.room:runtime:${roomVersion}",
             roomCompiler      : "android.arch.persistence.room:compiler:${roomVersion}",
             roomRxJava        : "android.arch.persistence.room:rxjava2:${roomVersion}",
+            guava             : "com.google.guava:guava:${guavaVersion}"
     ]
 
-    cacheTestDependencies = [
+    localPersistanceTestDependencies = [
             junit        : "junit:junit:${jUnitVersion}",
             assertj      : "org.assertj:assertj-core:${assertJVersion}",
             mockito      : "org.mockito:mockito-core:${mockitoVersion}",
@@ -133,12 +148,15 @@ ext {
             dagger            : "com.google.dagger:dagger:${daggerVersion}",
             gson              : "com.google.code.gson:gson:${gsonVersion}",
             rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
             okHttp            : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
             okHttpLogger      : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+            retrofitAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            guava             : "com.google.guava:guava:${guavaVersion}"
     ]
 
     remoteTestDependencies = [
@@ -154,6 +172,8 @@ ext {
             dagger             : "com.google.dagger:dagger:${daggerVersion}",
             rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            javaxAnnotation    : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject        : "javax.inject:javax.inject:${javaxInjectVersion}",
             glide              : "com.github.bumptech.glide:glide:${glideVersion}",
             androidAnnotations : "com.android.support:support-annotations:${supportLibraryVersion}",
             androidSupportV4   : "com.android.support:support-v4:${supportLibraryVersion}",
@@ -164,6 +184,7 @@ ext {
             timber             : "com.jakewharton.timber:timber:${timberVersion}",
             daggerSupport      : "com.google.dagger:dagger-android-support:${daggerVersion}",
             daggerProcessor    : "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            guava              : "com.google.guava:guava:${guavaVersion}"
     ]
 
     mobileUiTestDependencies = [

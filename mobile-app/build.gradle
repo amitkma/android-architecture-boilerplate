@@ -15,7 +15,6 @@
 
 apply plugin: 'com.android.application'
 apply from: "$rootDir/script/quality/quality-android-app.gradle"
-apply from: "$rootDir/script/config/dependencies/mobile-app-dependencies.gradle"
 
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
@@ -37,11 +36,11 @@ android {
         }
     }
 
-    if (project.hasProperty('devBuild')){
+    if (project.hasProperty('devBuild')) {
         aaptOptions.cruncherEnabled = false
     }
 
-    dexOptions{
+    dexOptions {
         javaMaxHeapSize "2048m"
     }
 
@@ -49,6 +48,70 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
 
+dependencies {
+    def mobileUiDependencies = rootProject.ext.mobileUiDependencies
+    def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
 
+    implementation project(':presentation')
+    implementation project(':data')
+    implementation project(':local-persistance')
+    implementation project(':remote')
+
+    // RxJava and RxAndroid
+    implementation mobileUiDependencies.rxJava
+    implementation mobileUiDependencies.rxAndroid
+
+    compileOnly mobileUiDependencies.javaxAnnotation
+
+    implementation mobileUiDependencies.javaxInject
+
+    implementation mobileUiDependencies.guava
+
+    // Android support libraries
+    implementation mobileUiDependencies.androidAnnotations
+    implementation mobileUiDependencies.androidSupportV4
+    implementation mobileUiDependencies.androidSupportV13
+    implementation mobileUiDependencies.appCompatV7
+    implementation mobileUiDependencies.supportRecyclerView
+    implementation mobileUiDependencies.supportDesign
+
+    // Timber for logging
+    implementation mobileUiDependencies.timber
+
+    // Glide for image loading
+    implementation mobileUiDependencies.glide
+
+    // Dagger for injection
+    implementation mobileUiDependencies.dagger
+    implementation mobileUiDependencies.daggerSupport
+    annotationProcessor mobileUiDependencies.daggerCompiler
+    annotationProcessor mobileUiDependencies.daggerProcessor
+
+    // Instrumentation test dependencies
+    androidTestImplementation mobileUiTestDependencies.junit
+    androidTestImplementation mobileUiTestDependencies.mockito
+    androidTestImplementation mobileUiTestDependencies.mockitoAndroid
+    androidTestImplementation(mobileUiTestDependencies.espressoCore) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(mobileUiTestDependencies.androidRunner) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(mobileUiTestDependencies.androidRules) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(mobileUiTestDependencies.espressoIntents) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(mobileUiTestDependencies.espressoContrib) {
+        exclude module: 'appcompat'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+    }
 }

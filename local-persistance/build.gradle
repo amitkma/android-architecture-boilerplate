@@ -16,7 +16,6 @@
 
 apply plugin: 'com.android.library'
 apply from: "$rootDir/script/quality/quality-android-lib.gradle"
-apply from: "$rootDir/script/config/dependencies/cache-dependencies.gradle"
 
 android {
 
@@ -40,6 +39,27 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+}
+
+dependencies {
+
+    def localPersistenceDependencies = rootProject.ext.localPersistanceDependencies
+    def localPersistenceTestDependencies = rootProject.ext.localPersistanceTestDependencies
+
+    implementation project(':data')
+
+    compileOnly localPersistenceDependencies.javaxAnnotation
+
+    implementation localPersistenceDependencies.javaxInject
+    implementation localPersistenceDependencies.guava
+    implementation localPersistenceDependencies.rxJava
+    implementation localPersistenceDependencies.gson
+
+    testImplementation localPersistenceTestDependencies.junit
+    testImplementation localPersistenceTestDependencies.mockito
+    testImplementation localPersistenceTestDependencies.assertj
+    testImplementation localPersistenceTestDependencies.robolectric
 
 }
 

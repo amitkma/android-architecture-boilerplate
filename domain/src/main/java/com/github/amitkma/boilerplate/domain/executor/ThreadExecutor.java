@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Amit Kumar.
+ * Copyright 2017 Amit Kumar.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,18 @@
  * limitations under the License.
  */
 
-dependencies {
-    def domainDependencies = rootProject.ext.domainDependencies
-    def domainTestDependencies = rootProject.ext.domainTestDependencies
+package com.github.amitkma.boilerplate.domain.executor;
 
-    implementation domainDependencies.rxJava
+import java.util.concurrent.Executor;
 
-    testImplementation domainTestDependencies.junit
-    testImplementation domainTestDependencies.mockito
-    testImplementation domainTestDependencies.assertj
+/**
+ * Author: Amit Kumar
+ * Created on: 19/9/17.
+ *
+ * Executor implementation can be based on different frameworks or techniques of asynchronous
+ * execution, but every implementation will execute the
+ * {@link com.github.amitkma.boilerplate.domain.interactor.UseCase} out of the UI thread.
+ */
+
+public interface ThreadExecutor extends Executor {
 }

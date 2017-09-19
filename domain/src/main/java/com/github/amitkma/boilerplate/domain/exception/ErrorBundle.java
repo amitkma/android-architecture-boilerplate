@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Amit Kumar.
+ * Copyright 2017 Amit Kumar.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-dependencies {
-    def dataDependencies = rootProject.ext.dataDependencies
-    def dataTestDependencies = rootProject.ext.dataTestDependencies
+package com.github.amitkma.boilerplate.domain.exception;
 
-    implementation project(':domain')
+/**
+ * Author: Amit Kumar
+ * Created on: 19/9/17.
+ *
+ * Interface to represent a wrapper around an {@link java.lang.Exception} to manage errors.
+ */
 
-    implementation dataDependencies.rxJava
+public interface ErrorBundle {
 
-    testImplementation dataTestDependencies.junit
-    testImplementation dataTestDependencies.mockito
-    testImplementation dataTestDependencies.assertj
+    Exception getException();
+
+    String getMessage();
 }

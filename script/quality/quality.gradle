@@ -19,15 +19,13 @@
  *
  * Gradle tasks added:
  * - checkstyle
- * - findbugs
  * - pmd
  *
- * The three tasks above are added as dependencies of the check task so running check will
+ * The two tasks above are added as dependencies of the check task so running check will
  * run all of them.
  */
 
 apply plugin: 'checkstyle'
-apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
 apply from: "$rootDir/script/utils.gradle"
@@ -54,8 +52,7 @@ def generateCheckQualityTask(String buildVariant, boolean withLint) {
     def checkQualityVariant = "check${buildVariant}Quality"
     def checkQualityVariantTaskDependencies = [
             "checkstyle${buildVariant}",
-            "pmd${buildVariant}",
-            "findbugs${buildVariant}"
+            "pmd${buildVariant}"
     ]
     if (withLint) {
         checkQualityVariantTaskDependencies += "lint${buildVariant}"
@@ -164,54 +161,7 @@ def generatePMDTaskForVariant(variant) {
     generatePMDTask(flavor, buildType, buildVariant)
 }
 
-removeCheckTaskIf("findbugs", FindBugs)
 
-task findbugs(type: FindBugs) {
-    group = "Verification"
-    description = "Finds bugs in bytecode on all build variants."
-}
-
-def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
-    def findbugsDependency = buildType.isEmpty() ? "assemble" : "assemble${buildVariant.capitalize()}"
-    def findbugsVariant = "findbugs${buildVariant.capitalize()}"
-
-    task(findbugsVariant, type: FindBugs, dependsOn: "${findbugsDependency}") {
-        group = "Verification"
-        description = "Finds bugs in bytecode on the ${buildVariant} build variant."
-
-        ignoreFailures = false
-        effort = "max"
-        reportLevel = "high"
-        excludeFilter = new File("$qualityConfigDir/findbugs/android-exclude-filter.xml")
-
-        def classesDir = resolveClassesDir(flavor, buildType, buildVariant)
-        source resolveSourceDirs(flavor, buildType, buildVariant)
-        classes = files(classesDir)
-        classpath = files() // intentionally blank to prevent duplicate analysis
-        include '**/*.java'
-        exclude '**/gen/**'
-
-        reports {
-            xml.enabled = false
-            html.enabled = true
-            xml {
-                destination "$reportsDir/findbugs/${buildVariant}/${findbugsVariant}.xml"
-            }
-            html {
-                destination "$reportsDir/findbugs/${buildVariant}/${findbugsVariant}.html"
-            }
-        }
-    }
-
-    tasks.findbugs.dependsOn findbugsVariant
-}
-
-def generateFindbugsTaskForVariant(variant) {
-    def flavor = variant.flavorName
-    def buildType = variant.buildType.name
-    def buildVariant = flavor + (flavor.isEmpty() ? buildType : buildType.capitalize())
-    generateFindbugsTask(flavor, buildType, buildVariant)
-}
 
 ext {
     generateCheckQualityTask = this.&generateCheckQualityTask
@@ -220,7 +170,5 @@ ext {
     generateCheckstyleTaskForVariant = this.&generateCheckstyleTaskForVariant
     generatePMDTask = this.&generatePMDTask
     generatePMDTaskForVariant = this.&generatePMDTaskForVariant
-    generateFindbugsTask = this.&generateFindbugsTask
-    generateFindbugsTaskForVariant = this.&generateFindbugsTaskForVariant
 }
 

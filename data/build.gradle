@@ -14,7 +14,24 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/script/config/java/library.gradle"
-apply from: "$rootDir/script/config/dependencies/data-dependencies.gradle"
+apply from: "$rootDir/script/config/java-library.gradle"
+
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+
+    implementation project(':domain')
+
+    compileOnly dataDependencies.javaxAnnotation
+
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.guava
+
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.mockito
+    testImplementation dataTestDependencies.assertj
+}
 
 

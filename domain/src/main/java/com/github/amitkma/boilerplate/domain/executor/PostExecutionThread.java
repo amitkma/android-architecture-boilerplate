@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Amit Kumar.
+ * Copyright 2017 Amit Kumar.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-dependencies {
+package com.github.amitkma.boilerplate.domain.executor;
 
-    def presentationDependencies = rootProject.ext.cacheDependencies
-    def presentationTestDependencies = rootProject.ext.cacheTestDependencies
+import io.reactivex.Scheduler;
 
-    implementation project(':domain')
+/**
+ * Author: Amit Kumar
+ * Created on: 19/9/17.
+ *
+ * Thread abstraction created to change the execution context from any thread to any other thread.
+ * Useful to encapsulate a UI Thread for example, since some job will be done in background, an
+ * implementation of this interface will change context and update the UI.
+ */
 
-    implementation presentationDependencies.rxJava
-
-    testImplementation presentationTestDependencies.junit
-    testImplementation presentationTestDependencies.mockito
-    testImplementation presentationTestDependencies.assertj
-    testImplementation presentationTestDependencies.robolectric
+public interface PostExecutionThread {
+    Scheduler getScheduler();
 }

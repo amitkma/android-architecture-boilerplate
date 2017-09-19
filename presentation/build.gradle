@@ -14,6 +14,24 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/script/config/java/library.gradle"
-apply from: "$rootDir/script/config/dependencies/presentation-dependencies.gradle"
+apply from: "$rootDir/script/config/java-library.gradle"
+
+dependencies {
+
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+
+    implementation project(':domain')
+
+    compileOnly presentationDependencies.javaxAnnotation
+
+    implementation presentationDependencies.javaxInject
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.guava
+
+    testImplementation presentationTestDependencies.junit
+    testImplementation presentationTestDependencies.mockito
+    testImplementation presentationTestDependencies.assertj
+    testImplementation presentationTestDependencies.robolectric
+}
 
