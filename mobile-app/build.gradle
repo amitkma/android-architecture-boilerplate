@@ -56,7 +56,7 @@ dependencies {
 
     implementation project(':presentation')
     implementation project(':data')
-    implementation project(':local-persistance')
+    implementation project(':local-persistence')
     implementation project(':remote')
 
     // RxJava and RxAndroid
