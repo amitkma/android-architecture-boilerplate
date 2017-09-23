@@ -20,6 +20,7 @@ import com.github.amitkma.boilerplate.domain.model.User;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 /**
@@ -32,14 +33,18 @@ import io.reactivex.Observable;
 public interface UserRepository {
 
     /**
-     * Get an {@link Observable} which will emit a List of {@link User}.
+     * Clear all users from the local storage.
      */
-    Observable<List<User>> users();
+    Completable clearUsers();
 
     /**
-     * Get an {@link Observable} which will emit a {@link User}.
-     *
-     * @param userId The user id used to retrieve user data.
+     * Save a given list of {@link User} to the local storage.
+     * @param users list to be saved in local storage
      */
-    Observable<User> user(final int userId);
+    Completable saveUsers(List<User> users);
+
+    /**
+     * Retrieve a list of {@link User} from the local storage.
+     */
+    Observable<List<User>> getUsers();
 }

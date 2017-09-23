@@ -25,7 +25,6 @@ package com.github.amitkma.boilerplate.domain.model;
 public class User {
 
     private final int mUserId;
-
     private String mCoverUrl;
     private String mFullName;
     private String mEmail;
