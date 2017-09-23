@@ -84,6 +84,7 @@ public class UserEntityMapper implements Mapper<UserEntity, User> {
      * @param userEntities Object to be mapped.
      * @return List of {@link User}.
      */
+    @Override
     public List<User> mapFromEntity(Collection<UserEntity> userEntities) {
         final List<User> userList = new ArrayList<>();
         for (UserEntity userEntity : userEntities) {
@@ -101,6 +102,7 @@ public class UserEntityMapper implements Mapper<UserEntity, User> {
      * @param users Object to be mapped.
      * @return List of {@link UserEntity}.
      */
+    @Override
     public List<UserEntity> mapToEntity(Collection<User> users) {
         final List<UserEntity> userEntityList = new ArrayList<>();
         for (User user : users) {

@@ -34,13 +34,13 @@ import io.reactivex.Observable;
  * Implementation of {@link UserRepository} interface for communicating to and from data sources
  */
 @Singleton
-public class UserDataRepository implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
     private final UserDataStoreFactory mUserDataStoreFactory;
     private final UserEntityMapper mUserEntityMapper;
 
     @Inject
-    public UserDataRepository(
+    public UserRepositoryImpl(
             UserDataStoreFactory userDataStoreFactory,
             UserEntityMapper userEntityMapper) {
         mUserDataStoreFactory = userDataStoreFactory;

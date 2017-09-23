@@ -16,6 +16,9 @@
 
 package com.github.amitkma.boilerplate.data.mapper;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Author: Amit Kumar
  * Created on: 23/9/17.
@@ -29,4 +32,8 @@ public interface Mapper<E, D> {
     D mapFromEntity(E e);
 
     E mapToEntity(D d);
+
+    List<D> mapFromEntity(Collection<E> e);
+
+    List<E> mapToEntity(Collection<D> d);
 }
