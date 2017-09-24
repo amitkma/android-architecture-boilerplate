@@ -25,7 +25,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 
 /**
  * Author: Amit Kumar
@@ -47,7 +47,7 @@ public class GetUserList extends UseCase<List<User>, Void> {
     }
 
     @Override
-    Observable<List<User>> buildUseCaseObservable(Void aVoid) {
+    Flowable<List<User>> buildUseCaseObservable(Void aVoid) {
         return this.mUserRepository.getUsers();
     }
 }

@@ -21,7 +21,7 @@ import com.github.amitkma.boilerplate.data.model.UserEntity;
 import java.util.List;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 
 /**
  * Interface that represents a data store from where data is retrieved.
@@ -29,9 +29,9 @@ import io.reactivex.Observable;
 public interface UserDataStore {
 
     /**
-     * Get an {@link Observable} which will emit a list of {@link UserEntity}.
+     * Get an {@link Flowable} which will emit a list of {@link UserEntity}.
      */
-    Observable<List<UserEntity>> getUsers();
+    Flowable<List<UserEntity>> getUsers();
 
     Completable saveUsers(List<UserEntity> userEntityList);
 

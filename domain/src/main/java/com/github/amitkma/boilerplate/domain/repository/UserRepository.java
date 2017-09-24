@@ -21,7 +21,7 @@ import com.github.amitkma.boilerplate.domain.model.User;
 import java.util.List;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 
 /**
  * Author: Amit Kumar
@@ -46,5 +46,5 @@ public interface UserRepository {
     /**
      * Retrieve a list of {@link User} from the local storage.
      */
-    Observable<List<User>> getUsers();
+    Flowable<List<User>> getUsers();
 }

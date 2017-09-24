@@ -20,12 +20,12 @@ import com.github.amitkma.boilerplate.remote.model.UserModel;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 import retrofit2.http.GET;
 
 
 public interface ApiService {
 
     @GET("users.json")
-    Observable<List<UserModel>> getUsers();
+    Flowable<List<UserModel>> getUsers();
 }

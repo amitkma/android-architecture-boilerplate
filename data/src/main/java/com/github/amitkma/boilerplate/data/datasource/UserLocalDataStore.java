@@ -24,7 +24,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 
 public class UserLocalDataStore implements UserDataStore {
 
@@ -36,7 +36,7 @@ public class UserLocalDataStore implements UserDataStore {
     }
 
     @Override
-    public Observable<List<UserEntity>> getUsers() {
+    public Flowable<List<UserEntity>> getUsers() {
         return mUserLocalRepository.getUsers();
     }
 

@@ -28,7 +28,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 
 /**
  * Implementation of {@link UserRepository} interface for communicating to and from data sources
@@ -59,7 +59,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Observable<List<User>> getUsers() {
+    public Flowable<List<User>> getUsers() {
         final UserDataStore dataStore = mUserDataStoreFactory.create();
         return dataStore.getUsers().map(this.mUserEntityMapper::mapFromEntity);
     }

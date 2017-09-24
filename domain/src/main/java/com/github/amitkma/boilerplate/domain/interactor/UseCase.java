@@ -20,11 +20,13 @@ import com.github.amitkma.boilerplate.domain.executor.PostExecutionThread;
 import com.github.amitkma.boilerplate.domain.executor.ThreadExecutor;
 import com.google.common.base.Preconditions;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
  * Author: Amit Kumar
@@ -55,7 +57,7 @@ public abstract class UseCase<T, P> {
     /**
      * Builds an {@link Observable} which will be used when executing the current {@link UseCase}.
      */
-    abstract Observable<T> buildUseCaseObservable(P params);
+    abstract Flowable<T> buildUseCaseObservable(P params);
 
     /**
      * Executes the current use case.
@@ -64,9 +66,9 @@ public abstract class UseCase<T, P> {
      *                 by {@link #buildUseCaseObservable(P)} ()} method.
      * @param params   Parameters (Optional) used to build/execute this use case.
      */
-    public void execute(DisposableObserver<T> observer, P params) {
+    public void execute(DisposableSubscriber<T> observer, P params) {
         Preconditions.checkNotNull(observer);
-        final Observable<T> observable = this.buildUseCaseObservable(params)
+        final Flowable<T> observable = this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from(mThreadExecutor))
                 .observeOn(mPostExecutionThread.getScheduler());
         addDisposable(observable.subscribeWith(observer));

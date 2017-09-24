@@ -20,7 +20,7 @@ import com.github.amitkma.boilerplate.data.model.UserEntity;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 
 /**
  * Interface defining methods for fetching {@link UserEntity} from remote. This is to be implemented
@@ -31,5 +31,5 @@ public interface UserRemoteRepository {
     /**
      * Retrieve a list of {@link UserEntity} from the remote.
      */
-    Observable<List<UserEntity>> getUsers();
+    Flowable<List<UserEntity>> getUsers();
 }
