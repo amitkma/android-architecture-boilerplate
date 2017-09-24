@@ -44,8 +44,8 @@ android {
 
 dependencies {
 
-    def localPersistenceDependencies = rootProject.ext.localPersistanceDependencies
-    def localPersistenceTestDependencies = rootProject.ext.localPersistanceTestDependencies
+    def localPersistenceDependencies = rootProject.ext.localPersistenceDependencies
+    def localPersistenceTestDependencies = rootProject.ext.localPersistenceTestDependencies
 
     implementation project(':data')
 
@@ -55,11 +55,15 @@ dependencies {
     implementation localPersistenceDependencies.guava
     implementation localPersistenceDependencies.rxJava
     implementation localPersistenceDependencies.gson
+    implementation localPersistenceDependencies.roomRuntime
+    annotationProcessor localPersistenceDependencies.roomCompiler
 
     testImplementation localPersistenceTestDependencies.junit
     testImplementation localPersistenceTestDependencies.mockito
     testImplementation localPersistenceTestDependencies.assertj
     testImplementation localPersistenceTestDependencies.robolectric
+    testImplementation localPersistenceTestDependencies.roomTesting
+    testImplementation localPersistenceTestDependencies.archTesting
 
 }
 

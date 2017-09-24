@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.github.amitkma.boilerplate.cache;
+package com.github.amitkma.boilerplate.cache.mapper;
 
-/**
- * Author: Amit Kumar
- * Created on: 18/9/17.
- */
+public interface EntityMapper<T, V> {
 
-public class Cache {
+    V mapFromLocalStorage(T t);
+
+    T mapToCached(V v);
 }

@@ -37,7 +37,7 @@ ext {
     gsonVersion = '2.8.1'
     okHttpVersion = '3.9.0'
     retrofitVersion = '2.3.0'
-    roomVersion = '1.0.0-alpha9-1'
+    roomVersion = '1.0.0-beta1'
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
     daggerVersion = '2.11'
@@ -118,7 +118,7 @@ ext {
             robolectric: "org.robolectric:robolectric:${robolectricVersion}"
     ]
 
-    localPersistanceDependencies = [
+    localPersistenceDependencies = [
             daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger            : "com.google.dagger:dagger:${daggerVersion}",
             gson              : "com.google.code.gson:gson:${gsonVersion}",
@@ -132,7 +132,7 @@ ext {
             guava             : "com.google.guava:guava:${guavaVersion}"
     ]
 
-    localPersistanceTestDependencies = [
+    localPersistenceTestDependencies = [
             junit        : "junit:junit:${jUnitVersion}",
             assertj      : "org.assertj:assertj-core:${assertJVersion}",
             mockito      : "org.mockito:mockito-core:${mockitoVersion}",
