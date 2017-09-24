@@ -16,7 +16,7 @@
 
 package com.github.amitkma.boilerplate.data.datasource;
 
-import com.github.amitkma.boilerplate.data.repository.UserLocal;
+import com.github.amitkma.boilerplate.data.repository.UserLocalRepository;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -29,21 +29,21 @@ public class UserDataStoreFactory {
 
     private final UserLocalDataStore mUserLocalDataStore;
     private final UserRemoteDataStore mUserRemoteDataStore;
-    private final UserLocal mUserLocal;
+    private final UserLocalRepository mUserLocalRepository;
 
     @Inject
     UserDataStoreFactory(
-            UserLocal userLocal,
+            UserLocalRepository userLocalRepository,
             UserLocalDataStore userLocalDataStore,
             UserRemoteDataStore userRemoteDataStore) {
-        this.mUserLocal = userLocal;
+        this.mUserLocalRepository = userLocalRepository;
         this.mUserLocalDataStore = userLocalDataStore;
         this.mUserRemoteDataStore = userRemoteDataStore;
     }
 
 
     public UserDataStore create() {
-        if (mUserLocal.isStored() && !mUserLocal.isExpired()) {
+        if (mUserLocalRepository.isStored() && !mUserLocalRepository.isExpired()) {
             return createLocalDataStore();
         }
         return createRemoteDataStore();

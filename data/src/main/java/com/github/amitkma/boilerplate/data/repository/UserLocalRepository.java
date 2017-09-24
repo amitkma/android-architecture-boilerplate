@@ -27,7 +27,7 @@ import io.reactivex.Observable;
  * Interface defining methods for the local persistence of Users. This is to be implemented by the
  * local-persistence layer, using this interface as a way of communication.
  */
-public interface UserLocal {
+public interface UserLocalRepository {
 
     /**
      * Clear all users from the local storage.

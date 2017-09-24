@@ -17,7 +17,7 @@
 package com.github.amitkma.boilerplate.data.datasource;
 
 import com.github.amitkma.boilerplate.data.model.UserEntity;
-import com.github.amitkma.boilerplate.data.repository.UserRemote;
+import com.github.amitkma.boilerplate.data.repository.UserRemoteRepository;
 
 import java.util.List;
 
@@ -28,16 +28,16 @@ import io.reactivex.Observable;
 
 public class UserRemoteDataStore implements UserDataStore {
 
-    private final UserRemote mUserRemote;
+    private final UserRemoteRepository mUserRemoteRepository;
 
     @Inject
-    UserRemoteDataStore(UserRemote userRemote) {
-        mUserRemote = userRemote;
+    UserRemoteDataStore(UserRemoteRepository userRemoteRepository) {
+        mUserRemoteRepository = userRemoteRepository;
     }
 
     @Override
     public Observable<List<UserEntity>> getUsers() {
-        return mUserRemote.getUsers();
+        return mUserRemoteRepository.getUsers();
     }
 
     @Override

@@ -17,7 +17,7 @@
 package com.github.amitkma.boilerplate.data.datasource;
 
 import com.github.amitkma.boilerplate.data.model.UserEntity;
-import com.github.amitkma.boilerplate.data.repository.UserLocal;
+import com.github.amitkma.boilerplate.data.repository.UserLocalRepository;
 
 import java.util.List;
 
@@ -28,25 +28,25 @@ import io.reactivex.Observable;
 
 public class UserLocalDataStore implements UserDataStore {
 
-    private final UserLocal mUserLocal;
+    private final UserLocalRepository mUserLocalRepository;
 
     @Inject
-    UserLocalDataStore(UserLocal userLocal) {
-        this.mUserLocal = userLocal;
+    UserLocalDataStore(UserLocalRepository userLocalRepository) {
+        this.mUserLocalRepository = userLocalRepository;
     }
 
     @Override
     public Observable<List<UserEntity>> getUsers() {
-        return mUserLocal.getUsers();
+        return mUserLocalRepository.getUsers();
     }
 
     @Override
     public Completable saveUsers(List<UserEntity> userEntityList) {
-        return mUserLocal.saveUsers(userEntityList);
+        return mUserLocalRepository.saveUsers(userEntityList);
     }
 
     @Override
     public Completable clearUsers() {
-        return mUserLocal.clearUsers();
+        return mUserLocalRepository.clearUsers();
     }
 }

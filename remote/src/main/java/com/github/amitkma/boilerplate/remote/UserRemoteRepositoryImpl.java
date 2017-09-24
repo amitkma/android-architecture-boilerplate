@@ -17,7 +17,7 @@
 package com.github.amitkma.boilerplate.remote;
 
 import com.github.amitkma.boilerplate.data.model.UserEntity;
-import com.github.amitkma.boilerplate.data.repository.UserRemote;
+import com.github.amitkma.boilerplate.data.repository.UserRemoteRepository;
 import com.github.amitkma.boilerplate.remote.mapper.UserModelEntityMapper;
 
 import java.util.List;
@@ -26,13 +26,13 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
-public class UserRemoteImpl implements UserRemote {
+public class UserRemoteRepositoryImpl implements UserRemoteRepository {
 
     private final ApiService mApiService;
     private final UserModelEntityMapper mUserModelEntityMapper;
 
     @Inject
-    public UserRemoteImpl(ApiService apiService,
+    public UserRemoteRepositoryImpl(ApiService apiService,
             UserModelEntityMapper userModelEntityMapper) {
         mApiService = apiService;
         mUserModelEntityMapper = userModelEntityMapper;

@@ -26,7 +26,7 @@ import io.reactivex.Observable;
  * Interface defining methods for fetching {@link UserEntity} from remote. This is to be implemented
  * by the remote layer, using this interface as a way of communicating.
  */
-public interface UserRemote {
+public interface UserRemoteRepository {
 
     /**
      * Retrieve a list of {@link UserEntity} from the remote.
