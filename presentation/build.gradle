@@ -14,7 +14,34 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/script/config/java-library.gradle"
+apply plugin: 'com.android.library'
+apply from: "$rootDir/script/quality/quality-android-lib.gradle"
+
+android {
+
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
 
 dependencies {
 
@@ -28,10 +55,14 @@ dependencies {
     implementation presentationDependencies.javaxInject
     implementation presentationDependencies.rxJava
     implementation presentationDependencies.guava
+    compile presentationDependencies.archRuntime
+    compile presentationDependencies.archExtensions
+    annotationProcessor presentationDependencies.archCompiler
 
     testImplementation presentationTestDependencies.junit
     testImplementation presentationTestDependencies.mockito
     testImplementation presentationTestDependencies.assertj
     testImplementation presentationTestDependencies.robolectric
+    testImplementation presentationTestDependencies.archTesting
 }
 

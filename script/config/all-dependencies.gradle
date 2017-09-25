@@ -38,6 +38,7 @@ ext {
     okHttpVersion = '3.9.0'
     retrofitVersion = '2.3.0'
     roomVersion = '1.0.0-beta1'
+    archVersion = '1.0.0-beta1'
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
     daggerVersion = '2.11'
@@ -78,6 +79,9 @@ ext {
             gson              : "com.google.code.gson:gson:${gsonVersion}",
             rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            archRuntime       : "android.arch.lifecycle:runtime:${archVersion}",
+            archExtensions     : "android.arch.lifecycle:extensions:${archVersion}",
+            archCompiler      : "android.arch.lifecycle:compiler:${archVersion}",
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
@@ -91,6 +95,7 @@ ext {
             junit      : "junit:junit:${jUnitVersion}",
             assertj    : "org.assertj:assertj-core:${assertJVersion}",
             mockito    : "org.mockito:mockito-core:${mockitoVersion}",
+            archTesting: "android.arch.core:core-testing:${archVersion}",
             robolectric: "org.robolectric:robolectric:${robolectricVersion}"
     ]
 
