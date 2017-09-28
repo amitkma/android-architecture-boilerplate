@@ -17,16 +17,26 @@
 package com.github.amitkma.boilerplate.presentation.data;
 
 public class Resource<T> {
-    public Resource(ResourceState status, T data, String message){
+
+    public final ResourceState status;
+    public final T data;
+    public final String message;
+
+    public Resource(ResourceState status, T data, String message) {
+        this.status = status;
+        this.data = data;
+        this.message = message;
     }
 
-    Resource<T> error(String message, T data){
+    Resource<T> error(String message, T data) {
         return new Resource<>(ResourceState.ERROR, null, message);
     }
-    Resource<T> success(T data){
+
+    Resource<T> success(T data) {
         return new Resource<>(ResourceState.SUCCESS, data, null);
     }
-    Resource<T> loading(){
+
+    Resource<T> loading() {
         return new Resource<>(ResourceState.LOADING, null, null);
     }
 }
