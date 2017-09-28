@@ -32,6 +32,7 @@ public class UserMapper implements Mapper<UserView, User> {
     public UserView mapToView(User user) {
         UserView userView = null;
         if (user != null) {
+            userView = new UserView();
             userView.id = user.getUserId();
             userView.coverUrl = user.getCoverUrl();
             userView.description = user.getDescription();
