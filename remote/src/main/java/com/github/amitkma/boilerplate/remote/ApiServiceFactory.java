@@ -30,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiServiceFactory {
 
-    ApiService createApiService(boolean isDebug) {
+    public ApiService createApiService(boolean isDebug) {
         OkHttpClient okHttpClient = makeOkHttpClient(makeLoggingInterceptor(isDebug));
         return makeApiService(okHttpClient, makeGson());
 

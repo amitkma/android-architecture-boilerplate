@@ -47,12 +47,12 @@ public class UserViewModel extends ViewModel {
         fetchUsers();
     }
 
-    void fetchUsers(){
+    public void fetchUsers() {
         mUserMutableLiveData.postValue(new Resource(ResourceState.LOADING, null, null));
         mGetUserList.execute(new UserSubscriber(), null);
     }
 
-    private LiveData<Resource<List<UserView>>> getUsers(){
+    public LiveData<Resource<List<UserView>>> getUsers() {
         return mUserMutableLiveData;
     }
 
