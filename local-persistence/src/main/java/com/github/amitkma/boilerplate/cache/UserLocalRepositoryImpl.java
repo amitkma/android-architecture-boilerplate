@@ -29,6 +29,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 public class UserLocalRepositoryImpl implements UserLocalRepository {
 
@@ -80,8 +81,8 @@ public class UserLocalRepositoryImpl implements UserLocalRepository {
     }
 
     @Override
-    public boolean isStored() {
-        return !mUserDatabase.localUserDao().getUsers().isEmpty();
+    public Single<Boolean> isStored() {
+        return Single.defer(() -> Single.just(!mUserDatabase.localUserDao().getUsers().isEmpty()));
     }
 
     @Override

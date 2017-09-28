@@ -19,11 +19,17 @@ package com.github.amitkma.boilerplate.cache.mapper;
 import com.github.amitkma.boilerplate.cache.model.User;
 import com.github.amitkma.boilerplate.data.model.UserEntity;
 
+import javax.inject.Inject;
+
 public class UserEntityMapper implements EntityMapper<User, UserEntity> {
+
+    @Inject
+    public UserEntityMapper(){}
     @Override
     public UserEntity mapFromLocalStorage(User user) {
         UserEntity userEntity = null;
         if (user != null) {
+            userEntity = new UserEntity();
             userEntity.setUserId(user.id);
             userEntity.setCoverUrl(user.coverUrl);
             userEntity.setDescription(user.description);
@@ -38,6 +44,7 @@ public class UserEntityMapper implements EntityMapper<User, UserEntity> {
     public User mapToCached(UserEntity userEntity) {
         User user = null;
         if (userEntity != null) {
+            user = new User();
             user.id = userEntity.getUserId();
             user.coverUrl = userEntity.getCoverUrl();
             user.description = userEntity.getDescription();
