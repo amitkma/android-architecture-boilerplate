@@ -71,9 +71,9 @@ dependencies {
 
     // Android support libraries
     implementation mobileUiDependencies.androidAnnotations
-    implementation mobileUiDependencies.androidSupportV4
-    implementation mobileUiDependencies.androidSupportV13
-    implementation mobileUiDependencies.appCompatV7
+    implementation mobileUiDependencies.supportV4
+    implementation mobileUiDependencies.supportV13
+    implementation mobileUiDependencies.supportAppCompatV7
     implementation mobileUiDependencies.supportRecyclerView
     implementation mobileUiDependencies.supportDesign
 
@@ -85,14 +85,28 @@ dependencies {
 
     // Dagger for injection
     implementation mobileUiDependencies.dagger
+    implementation mobileUiDependencies.daggerAndroid
     implementation mobileUiDependencies.daggerSupport
     annotationProcessor mobileUiDependencies.daggerCompiler
     annotationProcessor mobileUiDependencies.daggerProcessor
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    // Architecture Components
+    implementation mobileUiDependencies.archRuntime
+    implementation mobileUiDependencies.archExtensions
+    implementation mobileUiDependencies.roomRxJava
+    annotationProcessor mobileUiDependencies.archCompiler
 
     // Instrumentation test dependencies
     androidTestImplementation mobileUiTestDependencies.junit
     androidTestImplementation mobileUiTestDependencies.mockito
     androidTestImplementation mobileUiTestDependencies.mockitoAndroid
+
+    androidTestImplementation mobileUiTestDependencies.supportAppCompatV7
+    androidTestImplementation mobileUiTestDependencies.supportRecyclerView
+    androidTestImplementation mobileUiTestDependencies.supportV4
+    androidTestImplementation mobileUiTestDependencies.supportDesign
+
     androidTestImplementation(mobileUiTestDependencies.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
