@@ -42,11 +42,12 @@ public class UserDataStoreFactory {
     }
 
 
-    public UserDataStore create() {
-        if (mUserLocalRepository.isStored() && !mUserLocalRepository.isExpired()) {
+    public UserDataStore create(boolean isStored) {
+        if (isStored && !mUserLocalRepository.isExpired()) {
             return createLocalDataStore();
         }
         return createRemoteDataStore();
+
     }
 
     /**
@@ -59,7 +60,7 @@ public class UserDataStoreFactory {
     /**
      * Return an instance of Remote Data Store.
      */
-    public UserDataStore createRemoteDataStore() {
+    private UserDataStore createRemoteDataStore() {
         return mUserRemoteDataStore;
     }
 }

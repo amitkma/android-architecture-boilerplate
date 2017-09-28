@@ -16,12 +16,13 @@
 
 package com.github.amitkma.boilerplate.data;
 
-import com.github.amitkma.boilerplate.data.datasource.UserDataStore;
 import com.github.amitkma.boilerplate.data.datasource.UserDataStoreFactory;
 import com.github.amitkma.boilerplate.data.mapper.UserEntityMapper;
+import com.github.amitkma.boilerplate.data.model.UserEntity;
 import com.github.amitkma.boilerplate.domain.model.User;
 import com.github.amitkma.boilerplate.domain.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -60,7 +61,17 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Flowable<List<User>> getUsers() {
-        final UserDataStore dataStore = mUserDataStoreFactory.create();
-        return dataStore.getUsers().map(this.mUserEntityMapper::mapFromEntity);
+        return mUserDataStoreFactory.createLocalDataStore().isStored()
+                .flatMapPublisher(aBoolean ->
+                        mUserDataStoreFactory.create(aBoolean).getUsers()
+                                .flatMap(userEntities -> {
+                                    List<User> list = new ArrayList<>();
+                                    for (UserEntity userEntity : userEntities) {
+                                        list.add(mUserEntityMapper.mapFromEntity(userEntity));
+                                    }
+                                    return Flowable.just(list)
+                                            .flatMap(users -> saveUsers(users).toSingle(
+                                                    () -> users).toFlowable());
+                                }));
     }
 }

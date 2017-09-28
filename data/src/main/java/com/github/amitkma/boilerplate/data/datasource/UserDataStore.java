@@ -22,6 +22,7 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 /**
  * Interface that represents a data store from where data is retrieved.
@@ -36,4 +37,6 @@ public interface UserDataStore {
     Completable saveUsers(List<UserEntity> userEntityList);
 
     Completable clearUsers();
+
+    Single<Boolean> isStored();
 }

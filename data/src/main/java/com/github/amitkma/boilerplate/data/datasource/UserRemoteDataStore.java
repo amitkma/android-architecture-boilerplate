@@ -25,6 +25,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 public class UserRemoteDataStore implements UserDataStore {
 
@@ -47,6 +48,11 @@ public class UserRemoteDataStore implements UserDataStore {
 
     @Override
     public Completable clearUsers() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Single<Boolean> isStored() {
         throw new UnsupportedOperationException();
     }
 }

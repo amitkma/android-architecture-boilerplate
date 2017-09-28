@@ -22,6 +22,7 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 /**
  * Interface defining methods for the local persistence of Users. This is to be implemented by the
@@ -50,7 +51,7 @@ public interface UserLocalRepository {
      * Check if a local storage exist in local storage or not.
      * @return true if element is stored, otherwise false.
      */
-    boolean isStored();
+    Single<Boolean> isStored();
 
     /**
      * Set the last stored time of local storage.

@@ -25,6 +25,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 public class UserLocalDataStore implements UserDataStore {
 
@@ -42,11 +43,17 @@ public class UserLocalDataStore implements UserDataStore {
 
     @Override
     public Completable saveUsers(List<UserEntity> userEntityList) {
-        return mUserLocalRepository.saveUsers(userEntityList);
+        return mUserLocalRepository.saveUsers(userEntityList).doOnComplete(
+                () -> mUserLocalRepository.setLastStoredTime(System.currentTimeMillis()));
     }
 
     @Override
     public Completable clearUsers() {
         return mUserLocalRepository.clearUsers();
+    }
+
+    @Override
+    public Single<Boolean> isStored() {
+        return mUserLocalRepository.isStored();
     }
 }
