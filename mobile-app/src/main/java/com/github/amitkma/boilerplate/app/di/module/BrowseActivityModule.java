@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 
-package com.github.amitkma.boilerplate.app;
+package com.github.amitkma.boilerplate.app.di.module;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.github.amitkma.boilerplate.domain.interactor.GetUserList;
+import com.github.amitkma.boilerplate.presentation.mapper.UserMapper;
+import com.github.amitkma.boilerplate.presentation.viewmodel.UserViewModel;
 
+import dagger.Module;
+import dagger.Provides;
 
-public class MainActivity extends AppCompatActivity {
+@Module
+class BrowseActivityModule {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    @Provides
+    UserViewModel provideUserViewModel(GetUserList getUserList, UserMapper userMapper) {
+        return new UserViewModel(getUserList, userMapper);
     }
 }

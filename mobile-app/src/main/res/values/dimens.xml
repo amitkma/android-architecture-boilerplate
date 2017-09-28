@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 2017 Amit Kumar.
+  ~ Copyright 2017 Amit Kumar.
+  ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
@@ -14,17 +15,13 @@
   ~ limitations under the License.
   -->
 
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-
-</android.support.design.widget.CoordinatorLayout>
+<resources>
+    <dimen name="text_hero">32sp</dimen>
+    <dimen name="text_headline">24sp</dimen>
+    <dimen name="text_title">16sp</dimen>
+    <dimen name="text_large_body">18sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_small_body">14sp</dimen>
+    <dimen name="text_smaller_body">12sp</dimen>
+    <dimen name="text_tiny_body">10sp</dimen>
+</resources>
