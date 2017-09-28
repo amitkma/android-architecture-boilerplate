@@ -48,7 +48,7 @@ dependencies {
     def presentationDependencies = rootProject.ext.presentationDependencies
     def presentationTestDependencies = rootProject.ext.presentationTestDependencies
 
-    implementation project(':domain')
+    api project(':domain')
 
     compileOnly presentationDependencies.javaxAnnotation
 
