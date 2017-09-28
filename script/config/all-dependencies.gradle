@@ -37,8 +37,8 @@ ext {
     gsonVersion = '2.8.1'
     okHttpVersion = '3.9.0'
     retrofitVersion = '2.3.0'
-    roomVersion = '1.0.0-beta1'
-    archVersion = '1.0.0-beta1'
+    roomVersion = '1.0.0-alpha9-1'
+    archVersion = '1.0.0'
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
     daggerVersion = '2.11'
@@ -80,8 +80,8 @@ ext {
             rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             archRuntime       : "android.arch.lifecycle:runtime:${archVersion}",
-            archExtensions     : "android.arch.lifecycle:extensions:${archVersion}",
-            archCompiler      : "android.arch.lifecycle:compiler:${archVersion}",
+            archExtensions    : "android.arch.lifecycle:extensions:${archVersion}-beta1",
+            archCompiler      : "android.arch.lifecycle:compiler:${archVersion}-beta1",
             javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
@@ -95,7 +95,7 @@ ext {
             junit      : "junit:junit:${jUnitVersion}",
             assertj    : "org.assertj:assertj-core:${assertJVersion}",
             mockito    : "org.mockito:mockito-core:${mockitoVersion}",
-            archTesting: "android.arch.core:core-testing:${archVersion}",
+            archTesting: "android.arch.core:core-testing:${archVersion}-beta1",
             robolectric: "org.robolectric:robolectric:${robolectricVersion}"
     ]
 
@@ -173,37 +173,46 @@ ext {
     ]
 
     mobileUiDependencies = [
-            daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
-            dagger             : "com.google.dagger:dagger:${daggerVersion}",
             rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid          : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             javaxAnnotation    : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject        : "javax.inject:javax.inject:${javaxInjectVersion}",
             glide              : "com.github.bumptech.glide:glide:${glideVersion}",
             androidAnnotations : "com.android.support:support-annotations:${supportLibraryVersion}",
-            androidSupportV4   : "com.android.support:support-v4:${supportLibraryVersion}",
-            androidSupportV13  : "com.android.support:support-v13:${supportLibraryVersion}",
-            appCompatV7        : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            supportV4          : "com.android.support:support-v4:${supportLibraryVersion}",
+            supportV13         : "com.android.support:support-v13:${supportLibraryVersion}",
+            supportAppCompatV7 : "com.android.support:appcompat-v7:${supportLibraryVersion}",
             supportRecyclerView: "com.android.support:recyclerview-v7:${supportLibraryVersion}",
             supportDesign      : "com.android.support:design:${supportLibraryVersion}",
             timber             : "com.jakewharton.timber:timber:${timberVersion}",
+            archRuntime        : "android.arch.lifecycle:runtime:${archVersion}",
+            archExtensions     : "android.arch.lifecycle:extensions:${archVersion}-beta1",
+            archCompiler       : "android.arch.lifecycle:compiler:${archVersion}-beta1",
+            roomRxJava         : "android.arch.persistence.room:rxjava2:${roomVersion}",
+            dagger             : "com.google.dagger:dagger:${daggerVersion}",
+            daggerAndroid      : "com.google.dagger:dagger-android:${daggerVersion}",
             daggerSupport      : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerCompiler     : "com.google.dagger:dagger-compiler:${daggerVersion}",
             daggerProcessor    : "com.google.dagger:dagger-android-processor:${daggerVersion}",
             guava              : "com.google.guava:guava:${guavaVersion}"
     ]
 
     mobileUiTestDependencies = [
-            junit          : "junit:junit:${jUnitVersion}",
-            assertj        : "org.assertj:assertj-core:${assertJVersion}",
-            mockito        : "org.mockito:mockito-core:${mockitoVersion}",
-            supportRunner  : "com.android.support.test:runner:${androidSupportRunnerVersion}",
-            supportRules   : "com.android.support.test:rules:${androidSupportRulesVersion}",
-            mockitoAndroid : "org.mockito:mockito-android:${mockitoAndroidVersion}",
-            espressoCore   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
-            espressoIntents: "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
-            espressoContrib: "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
-            androidRunner  : "com.android.support.test:runner:${runnerVersion}",
-            androidRules   : "com.android.support.test:rules:${runnerVersion}"
+            junit              : "junit:junit:${jUnitVersion}",
+            assertj            : "org.assertj:assertj-core:${assertJVersion}",
+            mockito            : "org.mockito:mockito-core:${mockitoVersion}",
+            supportAppCompatV7 : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            supportRecyclerView: "com.android.support:recyclerview-v7:${supportLibraryVersion}",
+            supportV4          : "com.android.support:support-v4:${supportLibraryVersion}",
+            supportDesign      : "com.android.support:design:${supportLibraryVersion}",
+            supportRunner      : "com.android.support.test:runner:${androidSupportRunnerVersion}",
+            supportRules       : "com.android.support.test:rules:${androidSupportRulesVersion}",
+            mockitoAndroid     : "org.mockito:mockito-android:${mockitoAndroidVersion}",
+            espressoCore       : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            espressoIntents    : "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
+            espressoContrib    : "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
+            androidRunner      : "com.android.support.test:runner:${runnerVersion}",
+            androidRules       : "com.android.support.test:rules:${runnerVersion}"
     ]
 
 }
